@@ -3,6 +3,7 @@ import os
 import re
 import stat
 import mimetypes
+import argparse
 from math import log
 from datetime import datetime
 
@@ -126,11 +127,21 @@ def download_handler(p=''):
     return res
 
 
-def main():
-    app.run('0.0.0.0', 8080, debug=True)
+def main(port):
+    app.run('0.0.0.0', port=port, debug=True)
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-p", "--port", help="listen port number", 
+                    type=int, 
+                    default=8080)
+
+    parser.add_argument("-r", "--root", 
+                    help="file default upload directory",
+                    default="/tmp") 
+    args = parser.parse_args()
+    ROOT_DIR = args.root
+    main(args.port)
 
 
