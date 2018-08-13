@@ -5,3 +5,18 @@ simple file share
 
 * [ ] 文件直传，存到指定目录
 * [ ] 接口，list，上传，下载
+
+默认的存储目录是 `/tmp`
+
+使用方式
+
+上传
+```
+curl -v -F "file=@t.txt" "http://localhost:8080/"
+```
+
+下载
+```
+curl http://localhost:8080/t.txt > tt.txt
+```
+
